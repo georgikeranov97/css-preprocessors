@@ -34,6 +34,10 @@ $themes: (
     @include themify('background-color', $arguments...);
 }
 
+@mixin color($arguments...) {
+    @include themify('color', $arguments...);
+}
+
 @mixin linear-gradient($direction, $color-stops...) {
     background: nth(nth($color-stops, 1), 1);
     background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
@@ -155,8 +159,9 @@ body {
         min-height: 735px;
         z-index: 1;
         background-color: transparent;
+        @include color('primary');
         @include section-bg() {
-            background-image: url('/assets/svg/shape--bubbles.svg'), linear-gradient(to left, firebrick, red);
+            background-image: url('/assets/svg/shape--bubbles.svg'), linear-gradient(to left, #59c5e6, #58c5e4);
             // @include background-color('primary');
             background-position: center;
         };
@@ -177,8 +182,9 @@ body {
 
     &-second {
         @include section-bg(-150px, true);
-        @include background-color('secondary');
-        // background-color: #fff;
+        // @include background-color('secondary');
+        background-color: #fff;
+        
         transform-style: preserve-3d;
         padding-bottom: 150px;
         #{$section} {
@@ -187,7 +193,7 @@ body {
             }
 
             &-title {
-                color: #000;
+                @include color('secondary');
                 position: relative;
 
                 &::before {
@@ -204,7 +210,8 @@ body {
             }
 
             &-text {
-                color: #8194b3;
+                // color: #8194b3;
+                @include color('primary');
             }
 
             &-img {
